@@ -1,0 +1,16 @@
+<div class="df box-container">
+    <div class="first-half">
+        <div>
+            <span class="font14 box-title" [ngStyle]="{'color': data && data.titleColor ? data.titleColor : 'black' }"> {{data.title}} </span>
+            <span class="{{data.icon}}" [ngStyle]="{ 'color': data && data.iconColor ? data.iconColor : 'black' }" > </span>
+        </div>
+        <div>
+            <span class="font24 fontBold"> {{data.value}} </span>
+            <span class="font14 box-sub"> {{data.type}} </span>
+        </div>
+    </div>
+    <div class="df second-half">
+        <div class="font12 progressData" >  {{ data.valuePercentage ? data.valuePercentage : '0%' }}  </div>
+        <div class="bar" [ngStyle]="{'height': data && data.valuePercentage ? data.valuePercentage : '0%', 'background' : data.percentageColor ? data.percentageColor : ''}"> </div>
+    </div>
+</div>

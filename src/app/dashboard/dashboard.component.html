@@ -1,0 +1,147 @@
+<div class="main-dashboard">
+    <div class="df sidebar-container font24">
+        <div class="df fontBold run-box font14"> Run. </div>
+        <div class="fas fa-bolt active-icon sidebar-icon-space"></div>
+        <div class="fas fa-comment-dots sidebar-icon-space"></div>
+        <div class="fas fa-inbox sidebar-icon-space"></div>
+        <div class="fas fa-cog sidebar-icon-space"></div>
+    </div>
+    <div class="center-cotainer">
+        <div class="df header-container">
+            <div class="header-left">
+                <div class="header-name"> Hello, Max <span class="emoji"> </span>  </div>
+                <div class="header-details"> Here is your daily statistics </div>
+            </div>
+            <div class="header-right">
+                <span> 23 August 2019 </span> 
+                <span class="fa fa-calendar-alt"></span>
+            </div>
+        </div>
+        <div class="df box-wrap">
+            <div class="box-bg" *ngFor="let data of bodyData">
+                <app-data-percentage-box [data]="data">  </app-data-percentage-box>
+            </div>
+        </div>
+        <div class="df graph-area">
+            <div class="graph-container">
+                <div class="df graph-header">
+                    <div class="fontBold"> Activity </div>
+                    <div class="df legend-area">
+                        <div style="position: relative;" *ngFor="let data of legendsData">
+                            <span class="legend-color" [ngStyle]="{'background-color': data.color}"></span>
+                            <span class="legend-text"> {{data.name}} </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="df graph-style font14 fontBold">
+                    <div class="df y-axis">
+                        <div> 0 </div>
+                        <div> 30 </div>
+                        <div> 60 </div>
+                        <div> 90 </div>
+                        <div> 120 </div>
+                    </div>
+                    <div class="df x-axis" *ngFor="let data of xData">
+                        <div style="margin-bottom: -10px"> {{data.value}} </div>
+                        <div [ngStyle]="bar" class="bar-style" *ngFor="let bar of data.bars">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="df message-box fontBold">
+                <div> You done </div>
+                <div> today's goals! </div>
+                <div class="goals-bg">
+                    <div class="goals df font12"> 100% </div>
+                </div>
+            </div>
+        </div>
+        <div class="map-container">
+            <div class="map-overlay fontBold">
+                <div> Running </div>
+                <div class="df">
+                    <div class="map-data">
+                        <div> 6.43 km </div>
+                        <div> Distance </div>
+                    </div>
+                    <div class="map-data">
+                        <div> 7.51 min </div>
+                        <div> Ride time </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="df container-space row-space trainer-search">
+            <div class="fontBold text-color"> Trainer </div>
+            <div class="fas fa-search calendar-color font18"></div>
+        </div>
+    </div>
+    <div class="right-container">
+        <div class="df container-space row-space">
+            <div class="df">
+                <div class="df round-bg">
+                <div class="fas fa-bell font24"></div>
+                <div class="round-dot"></div>
+                </div>
+                <div class="df round-bg">
+                <div class="fas fa-comment-dots font24"></div>
+                </div>
+            </div>
+            <div class="df">
+                <div class="user-name font18 fontBold"> Max Miles </div>
+                <div class="profile-bg">
+                    <img alt="surya" src="../../assets/surya.png" >
+                </div>
+            </div>
+        </div>
+        <div class="df container-space row-space">
+            <div class="fontBold text-color"> Today </div>
+            <div class="fas fa-calendar-alt calendar-color font18"></div>
+        </div>
+        <div class="square-pos" *ngFor = "let data of routineData;let i = index">
+            <div class="df square-bg" [ngStyle]="{'width' : i === 0 ? '85%' : '100%' }">
+                <div class="vertical-bar" [ngStyle]="{ 'border-color': data && data.barColor ? data.barColor : 'black' }"></div>
+                <div class="df container-space square-inner">
+                    <div class="square-space">
+                        <div class="square-head fontBold"> {{data.head}} </div>
+                        <div class="square-sub-head fontBold font14"> {{data.subHead}} </div>
+                    </div>
+                    <div class="time-bg font14">
+                        <div class="fas fa-clock box-clock-bg"></div>
+                        <div class="time-one fontBold"> {{data.timeOne}} </div>
+                        <div class="time-two"> {{data.timeTwo}} </div>
+                    </div>
+                </div>
+                <div class="on-hover-more" *ngIf="i === 0">
+                    <div class="fas fa-ellipsis-v" ></div>
+                </div>
+            </div>
+        </div>
+        <div class="df container-space row-space">
+            <div class="text-color fontBold"> Top Trainer </div>
+            <div class="fas fa-search search-icon"></div>
+        </div>
+        <div class="split-margin" [ngClass]="{'split-border': i > 0}" *ngFor="let data of trainerData;let i = index">
+            <div class="df trainer-area">
+                <div class="df trainer-user">
+                    <div class="profile-bg">
+                        <img alt="surya" src="../../assets/surya.png" >
+                        <div class="user-active" *ngIf="data && data.active"></div>
+                    </div>
+                    <div class="trainer-space font14 fontBold">
+                        <div class="trainer-name"> {{data.name}} </div>
+                        <div class="trainer-type"> {{data.area}} </div>
+                    </div>
+                    <div class="font14">
+                        <div class="fas fa-star star-icon"></div>
+                        <div class="fontBold"> {{data.rating}} </div>
+                    </div>
+                </div>
+                <div class="df trainer-social">
+                    <div class="df social-box"> <span class="fab fa-twitter"></span> </div>
+                    <div class="df social-box"> <span class="fab fa-facebook-f"></span> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
